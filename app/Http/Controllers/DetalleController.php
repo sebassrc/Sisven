@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Detalle;
 
 class DetalleController extends Controller
 {
@@ -13,7 +15,12 @@ class DetalleController extends Controller
      */
     public function index()
     {
-        //
+        $detalles = DB::table('details')
+        ->join('products', 'details.product_id', '=', 'products.id')
+        ->select('details.*', 'products.name as product_name')
+        ->get();
+
+        return view('detalles.index', ['detalles' => $detalles]);
     }
 
     /**
