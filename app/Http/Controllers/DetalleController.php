@@ -30,7 +30,11 @@ class DetalleController extends Controller
      */
     public function create()
     {
-        //
+        $productos = DB::table('products')
+        ->orderBy('name')
+        ->get();
+
+        return view('detalles.new', ['productos' => $productos]);
     }
 
     /**
@@ -41,7 +45,19 @@ class DetalleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $detalle = new Detalle();
+        $detalle->invoice_id = $request->invoice_id;
+        $detalle->product_id = $request->product_id;
+        $detalle->quantity = $request->quantity;
+        $detalle->price = $request->price;
+        $detalle->save();
+
+        $detalles = DB::table('details')
+        ->join('products', 'details.product_id', '=', 'products.id')
+        ->select('details.*', 'products.name as product_name')
+        ->get();
+
+        return view('detalles.index', ['detalles' => $detalles]);
     }
 
     /**
@@ -63,7 +79,14 @@ class DetalleController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $detalle = Detalle::find($id);
+
+        $productos = DB::table('products')
+        ->orderBy('name')
+        ->get();
+
+        return view('detalles.edit', ['detalle' => $detalle, 'productos' => $productos]);
     }
 
     /**
@@ -75,7 +98,20 @@ class DetalleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $detalle = Detalle::find($id);
+
+        $detalle->invoice_id = $request->invoice_id;
+        $detalle->product_id = $request->product_id;
+        $detalle->quantity = $request->quantity;
+        $detalle->price = $request->price;
+        $detalle->save();
+
+        $detalles = DB::table('details')
+        ->join('products', 'details.product_id', '=', 'products.id')
+        ->select('details.*', 'products.name as product_name')
+        ->get();
+
+        return view('detalles.index', ['detalles' => $detalles]);
     }
 
     /**
@@ -86,6 +122,14 @@ class DetalleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $detalle = Detalle::find($id);
+        $detalle->delete();
+
+        $detalles = DB::table('details')
+        ->join('products', 'details.product_id', '=', 'products.id')
+        ->select('details.*', 'products.name as product_name')
+        ->get();
+
+        return view('detalles.index', ['detalles' => $detalles]);
     }
 }

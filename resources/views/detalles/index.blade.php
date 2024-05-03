@@ -37,14 +37,14 @@
                 <td>{{ $detalle->quantity }}</td>
                 <td>{{ $detalle->price }}</td>
                 <td>
-                  {{-- <a href="{{ route('inscripciones.edit', ['inscripcion'=>$inscripcion->id]) }}"
+                  <a href="{{ route('detalles.edit', ['detalle'=>$detalle->id]) }}"
                     class="btn btn-secondary">Editar</a>
-                    <form action="{{ route('inscripciones.destroy', ['inscripcion' => $inscripcion->id]) }}"
+                    <form action="{{ route('detalles.destroy', ['detalle' => $detalle->id]) }}"
                       method='POST' style="display:inline-block">
                       @method('delete')
                       @csrf
                       <input class="btn btn-danger" type="submit" value="Eliminar">
-                    </form> --}}
+                    </form>
                 </td>
               </tr>
               @endforeach
