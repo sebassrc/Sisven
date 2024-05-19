@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
+        $category = new Categoria();
         $category->name = $request->name;
         $category->description = $request->description;
         $category->save();
@@ -43,7 +43,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
+        $category = Categoria::find($id);
         return json_encode(['category' => $category]);
     }
 
@@ -56,7 +56,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
+        $category = Categoria::find($id);
         $category->name = $request->name;
         $category->description = $request->description;
         $category->save();
@@ -71,7 +71,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
+        $category = Categoria::find($id);
         $category->delete();
         $categories = DB::table('categories')->get();
         return json_encode(['categories' => $categories, 'success' => true]);
