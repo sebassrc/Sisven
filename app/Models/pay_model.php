@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pay_model extends Model
+class pay_mode extends Model
 {
     use HasFactory;
-    protected $table = "pay_model";
+    protected $table = "pay_mode";
     protected $primaryKey = "id";
     public $timestamps = false;
 }

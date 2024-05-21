@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\PayMode;
+use App\Models\pay_mode;
 
 class pay_modelController extends Controller
 {
@@ -15,7 +15,7 @@ class pay_modelController extends Controller
      */
     public function index()
     {
-        $payModes = PayMode::all();
+        $payModes = pay_mode::all();
         return response()->json($payModes);
     }
 
@@ -42,17 +42,17 @@ class pay_modelController extends Controller
             'observation' => 'nullable|string|max:200',
         ]);
 
-        $payMode = PayMode::create($validated);
+        $payMode = pay_mode::create($validated);
         return response()->json($payMode, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PayMode  $payMode
+     * @param  \App\Models\pay_mode  $payMode
      * @return \Illuminate\Http\Response
      */
-    public function show(PayMode $payMode)
+    public function show(pay_mode $payMode)
     {
         return response()->json($payMode);
     }
@@ -60,10 +60,10 @@ class pay_modelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PayMode  $payMode
+     * @param  \App\Models\pay_mode  $payMode
      * @return \Illuminate\Http\Response
      */
-    public function edit(PayMode $payMode)
+    public function edit(pay_mode $payMode)
     {
         // Return view for editing pay mode (if applicable)
     }
@@ -72,10 +72,10 @@ class pay_modelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PayMode  $payMode
+     * @param  \App\Models\pay_mode  $payMode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PayMode $payMode)
+    public function update(Request $request, pay_mode $payMode)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:50',
@@ -89,10 +89,10 @@ class pay_modelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PayMode  $payMode
+     * @param  \App\Models\pay_mode  $payMode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PayMode $payMode)
+    public function destroy(pay_mode $payMode)
     {
         $payMode->delete();
         return response()->json(null, 204);
