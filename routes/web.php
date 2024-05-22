@@ -37,3 +37,4 @@ require __DIR__.'/auth.php';
 Route::resource('detalles', DetalleController::class)->parameters([
     'detalles' => 'detalle',
 ]);
+
