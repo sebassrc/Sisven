@@ -15,8 +15,8 @@ class pay_modelController extends Controller
      */
     public function index()
     {
-        $payModes = pay_mode::all();
-        return response()->json($payModes);
+        $payMode = pay_mode::all();
+        return response()->json($payMode);
     }
 
     /**
