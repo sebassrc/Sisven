@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\pay_mode;
 
-class pay_modelController extends Controller
+class pay_modeController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,18 +16,6 @@ class pay_modelController extends Controller
     {
         $payMode = pay_mode::all();
         return response()->json($payMode);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-            return view('pay_mode.create');
-        
     }
 
     /**
@@ -51,33 +38,22 @@ class pay_modelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\pay_mode  $payMode
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(pay_mode $payMode)
+    public function show($id)
     {
         return response()->json($payMode);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\pay_mode  $payMode
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(pay_mode $payMode)
-    {
-        return view('pay_mode.edit', compact('payMode'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\pay_mode  $payMode
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pay_mode $payMode)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:50',
@@ -91,10 +67,10 @@ class pay_modelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\pay_mode  $payMode
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pay_mode $payMode)
+    public function destroy($id)
     {
         $payMode->delete();
         return response()->json(null, 204);
